@@ -1,23 +1,40 @@
-# Site settings
-title: HyG
-email: gaohaoyang126@126.com
-description: 浩阳的博客 前端爱好者
-# > # this means to ignore newlines until "baseurl:"
-#   Write an awesome description for your new site here. You can edit this
-#   line in _config.yml. It will appear in your document head meta (for
-#   Google search results) and in your feed.xml site description.
-
-# baseurl: "" # the subpath of your site, e.g. /blog/
-# url: "http://yourdomain.com" # the base hostname & protocol for your site
-# twitter_username: jekyllrb
-github_username:  Gaohaoyang
-permalink: /:year/:month/:day/:title/
-
-# Build settings
+# build
 markdown: kramdown
+permalink: /blog/:year/:title/
+exclude:
+  - Gemfile
+  - LICENSE
+  - Rakefile
+  - README.md
+  - vendor/
+  - vnu/
+  - vnu.zip
+layouts: ./_noita
+sass:
+  sass_dir: noita/_scss
+  style: compressed
+# compress layout in _noita/compress.html
+compress_html:
+  clippings: all
+  endings: all
+  comments: ["<!--", "-->"]
+  ignore:
+    envs: [travis]
+# theme
+noita:
+  name: 梁耀荣
+  description: 华中师范大学统计学本科生一枚
+  author:
+    name: Anatol Broder
+    url: http://penibelst.de/
+  lang: en
+  favicons:
+    - /assets/2014/04/21/favicon-152.png
+  topbar:
+    toggle: Menu
+    right:
+      - name: GitHub
+        url: https://github.com/liangyaorong
+      - name: Blog
+        url: /blog/
 
-# highlight
-# 本地用rouge, github上用pygments
-# highlighter: pygments
-# highlighter: rouge
-# highlighter: false
