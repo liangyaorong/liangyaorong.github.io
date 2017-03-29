@@ -1,6 +1,6 @@
 # build
 markdown: kramdown
-permalink: /blog/:year/:title/
+permalink: /blog/:title/
 exclude:
   - Gemfile
   - LICENSE
@@ -29,7 +29,7 @@ noita:
     url: http://penibelst.de/
   lang: en
   favicons:
-    - /assets/2014/04/21/favicon-152.png
+    - /assets/favicon.png
   topbar:
     toggle: Menu
     right:
