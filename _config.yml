@@ -1,40 +1,55 @@
-# build
-markdown: kramdown
-permalink: /blog/:year/:title/
-exclude:
-  - Gemfile
-  - LICENSE
-  - Rakefile
-  - README.md
-  - vendor/
-  - vnu/
-  - vnu.zip
-layouts: ./_noita
-sass:
-  sass_dir: noita/_scss
-  style: compressed
-# compress layout in _noita/compress.html
-compress_html:
-  clippings: all
-  endings: all
-  comments: ["<!--", "-->"]
-  ignore:
-    envs: [travis]
-# theme
-noita:
-  name: 梁耀荣
-  description: 华中师范大学统计学本科生一枚
-  author:
-    name: Anatol Broder
-    url: http://penibelst.de/
-  lang: en
-  favicons:
-    - /assets/2014/04/21/favicon-152.png
-  topbar:
-    toggle: Menu
-    right:
-      - name: GitHub
-        url: https://github.com/liangyaorong
-      - name: Blog
-        url: /blog/
+---
+# # # # # # # # # #
+#  K i k o f r i  #
+# # # # # # # # # #
 
+# Basic
+name: "K i k o f r i"
+description: "dirty and malnourished jekyll theme"
+
+# URL
+url: ""
+#baseurl: ""
+permalink: /:year/:month/:day/:title.html
+
+# Markdown
+markdown: kramdown
+
+# Navigation
+nav:
+ - name: "about"
+   href: "/about"
+
+ - name: "reference"
+   href: "/ref"
+
+ - name: "contact"
+   href: "mailto:ivantheterrible@1530to1584.gov?You%20are%20ooold..."
+
+# Sass
+sass:
+ style: :compressed
+
+# Excerpt
+excerpt_separator: <!-ex->
+
+#Gems
+gems: [jekyll-paginate]
+paginate: 10
+paginate_path: "/page:num/"
+
+# Scopes
+defaults:
+ -
+  scope:
+   path: ""
+   type: "pages"
+  values:
+   layout: "page"
+ -
+  scope:
+   path: ""
+   type: "posts"
+  values:
+   layout: "post"
+---
