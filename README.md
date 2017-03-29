@@ -1,87 +1,130 @@
-# Hydejack
+# Kiko Plus Theme
 
-Hydejack is a pretentious two-column [Jekyll](http://jekyllrb.com) theme, stolen by [`@qwtel`](https://twitter.com/qwtel) from [Hyde](http://hyde.getpoole.com). You could say it was.. [hydejacked](http://media3.giphy.com/media/makedRIckZBW8/giphy.gif).
+![image](/images/image.png)
+
+You can see live demo [here](https://aweekj.github.io/Kiko-plus). This theme is inspired by [Kiko](http://github.com/gfjaru/Kiko) theme.
 
 ## Features
-Unlike Hyde, it's very opinionated about how you are going to use it.
 
-Features include:
+- Disqus comment system
+- Google analytics
+- Pagination support
+- Custom tags
+- SEO support
 
-* Touch-enabled sidebar / drawer for mobile, including fallback when JS is disabled.
-* Github Pages compatible tag support based on [this post][tag].
-* Customizable link color and sidebar image, per-site, per-tag and per-post.
-* Optional author section at the bottom of each post.
-* Optional comment section powered by Disqus.
-* Layout for posts grouped by year
-* Wide array of social media icons on sidebar.
-* Math blocks via [KaTeX](https://khan.github.io/KaTeX/).
 
-## Download
-Hydejack is developed on and hosted with GitHub. Head to the [GitHub repository](https://github.com/qwtel/hydejack) for downloads, bug reports, and feature requests.
+## Installation
 
-## Sidebar
-I love the original Hyde theme, but unfortunately the layout isn't as great on small screens.
-Since the sidebar moves to the top, the user has to scroll down just to read the title of a blog post.
+#### Method 1: new master's repository (The Best)
 
-By using a drawer component I was able to retain the original two column layout. It's possible to move the drawer via touch input (with the help of a little JavaScript).
+1. First [fork](https://github.com/AWEEKJ/Kiko-plus/fork) it.
+2. Change your forked repository name _Kiko-plus_ to __USERNAME.github.io__ where __USERNAME__ is your github username.
+3. Access your new blog via [https://username.github.io](https://username.github.io).
+4. [See configuration](#configuration).
 
-Since the background image contributes to the feel of the page I'm letting it peek over the edge a bit. This also provides a hint to the user that an interaction is possible.
+#### Method 2: gh-pages in existing repository
 
-## Manual
+1. Create a new branch called _gh-pages_ in the repository where you want to add a template [managing branches](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/).
+2. From command line run `git clone https://github.com/AWEEKJ/Kiko-plus.git` - this will clone _Kiko-plus_ template to your computer.
+3. Create new branch `git checkout -b gh-pages` where _gh-pages_ will be your branch name.
+4. Add remote, which is your repo from the first step, to your new branch `git remote add gh-pages https://github.com/<yourName>/<yourMaster>/gh-pages`. _yourName_ is your account name and _yourMaster_ is your repository.
+5. Push new branch to remote `git push gh-pages`.
+6. Update `_config.yml` file by changing `baseurl: "<branchName>"` _branchName_ is your branch name where _gh-pages_ resides. See [configuration](#configuration).
 
-### Configuration
-You can configure important aspects of the theme via [`_config.yml`](https://github.com/qwtel/hydejack/blob/master/_config.yml). This includes:
+## Configuration
 
-* the blog description in the sidebar
-* the (optional) author description and photo
-* default image and link color of the blog
-* the github and twitter usernames
+All configuration is done via `_config.yml` file which you will find in your main repo folder. Change this `<something>` to yours.
 
-### How to Change the Image and Color of a Post
-In the manifest of a blog post, simply add an url as `image` and a CSS color as `color`:
+### Basic
 
-~~~yml
-layout: post
-title: Introducing Hydejack
-image: http://qwtel.com/hydejack/public/img/hyde.jpg
-color: '#949667'
-~~~
+- Config your blog name.
 
-### How to Add a New Tag
-Tags are possible, but they are not meant to be used #instagram #style: #food #goodfood #happy #happylife #didimentionfood #yougetthepoint. Each tag requires some setup work. I tend to think of it as categories that can be combined.
+```yml
+name: <blog-name>
+```
 
-1.  Add an entry to `_data/tags.yml`, where the key represents a slug and provide at least a `name` value and optionally `image`, `color` and `description`.
+- These configuration in `author:` is for links to icons in footer. If you want to add more link icons, modify `_includes/footer.html` file.
 
-    Example `/_data/tags.yml`:
+```yml
+author:
+  facebook:         your-id
+  twitter:          your-id
+  github:           your-id
+  linkedin:         your-id
+  medium:           your-id
+  tumblr:           your-id
+  email:            your-id@your-email.com
+```
 
-    ~~~yml
-    mytag:
-      name: My Tag
-    ~~~
+- Change copyright year and name in footer.
 
-2.  Make a new file in the `tag` folder, using the same name you've used as the key / slug and change the `tag` and `permalink` entries.
+```yml
+copyright:
+  year:             2017
+  name:             Kiko
+```
 
-    Example `/tag/mytag.md`:
+### Google analytics
 
-    ~~~yml
-    layout: blog-by-tag
-    tag: mytag
-    permalink: /tag/mytag/
-    ~~~
+- Change this to your Google Analytic ID.
 
-3.  Tag your blog posts using the `tags` key (color and image will only depend on the first tag).
+```yml
+google-analytics:
+  id:               "your-id"
+```
 
-    ~~~yml
-    layout: post
-    title: Introducing My New Tag
-    tags: [mytag, othertag]
-    ~~~
+### Disqus
 
-4. (optional) Add the tag to the sidebar, by adding it to `sidebar_tags` in `_config.yml`.
-   They will appear in the listed order.
+- Change this to your Disqus short name.
 
-   ~~~yml
-   sidebar_tags: [mytag, othertag]
-   ~~~
+```yml
+disqus:
+  id:               "your-id"
+```
 
-[tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
+### URL
+
+- Config your domain.
+
+```yml
+url: "https://<your-name>.github.io"
+```
+
+- **NOTE** When if running locally, change url to 
+
+```yml
+url: "https://localhost:4000"
+```
+
+- Change this to your branch name where _gh-pages_ resides. 
+- **NOTE** apply only if you used __Method 2__ for installation.
+
+```yml
+baseurl: "/<branch-name>"
+```
+
+## Run in Local
+
+1. Download or clone your remote repository.
+2. Go inside folder. First, run `rake geminstall`. 
+3. Second, run `jekyll serve` or `rake preview`. This will build a website which you can access [https://localhost:4000](https://localhost:4000). Make sure that `url` in `_config.yml` file is `url: "https://localhost:4000"`. You need to have [Jekyll](https://jekyllrb.com/docs/installation/) installed to do this.
+
+## Rakefile Usage
+
+```bash
+# Create new post
+$ rake post title="A Title" [date="2015-08-16"] [tags="[tag1, tag2]"] 
+
+# Create new draft post
+$ rake draft title="A Title" [date="2015-08-16"] [tags="[tag1, tag2]"]
+
+# Install Jekyll Plugins. Do before running in local.
+$ rake geminstall
+
+# Run in Local
+$ rake preview
+```
+
+## License
+
+This theme is released under MIT License.
