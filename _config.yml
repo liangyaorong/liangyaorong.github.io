@@ -2,7 +2,6 @@
 markdown: kramdown
 permalink: /blog/:year/:title/
 exclude:
-  - CNAME
   - Gemfile
   - LICENSE
   - Rakefile
@@ -34,12 +33,12 @@ noita:
   topbar:
     toggle: Menu
     right:
-      - name: About
-        url: /about/
-      - name: Guide
-        url: /guide/
+#      - name: About
+#        url: /about/
+#      - name: Guide
+#        url: /guide/
       - name: Blog
         url: /blog/
-      - name: Repository
-        url: https://github.com/penibelst/jekyll-noita
+#      - name: Repository
+#        url: https://github.com/penibelst/jekyll-noita
         class: small button
