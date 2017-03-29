@@ -6,10 +6,6 @@ title: Recent Posts
 
 <div class="row">
   <div class="medium-8 columns">
-    {% include noita/posts-short.html %}
-  </div>
-  <h1 class="pageTitle">Recent Posts</h1>
-  <ul class="posts noList">
     {% for post in blog.posts %}
       <li>
         <span class="date">{{ post.date | date: '%B %d, %Y' }}</span>
@@ -17,5 +13,5 @@ title: Recent Posts
         <p class="description">{% if post.description %}{{ post.description | strip_html | strip_newlines | truncate: 250 }}{% else %}{{ post.content | strip_html | strip_newlines | truncate: 250 }}{% endif %}</p>
       </li>
     {% endfor %}
-  </ul>
+  </div>
 </div>
