@@ -22,8 +22,8 @@ compress_html:
     envs: [travis]
 # theme
 noita:
-  name: Noita
-  description: Jekyll theme built with Foundation
+  name: 梁耀荣
+  description: 华中师范大学统计学本科生一枚
   author:
     name: Anatol Broder
     url: http://penibelst.de/
