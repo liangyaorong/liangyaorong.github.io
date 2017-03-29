@@ -33,12 +33,8 @@ noita:
   topbar:
     toggle: Menu
     right:
-#      - name: About
-#        url: /about/
-#      - name: Guide
-#        url: /guide/
+      - name: GitHub
+        url: https://github.com/liangyaorong
       - name: Blog
         url: /blog/
-#      - name: Repository
-#        url: https://github.com/penibelst/jekyll-noita
-#        class: small button
+
