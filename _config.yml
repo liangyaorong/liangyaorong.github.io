@@ -1,6 +1,6 @@
 # build
 markdown: kramdown
-permalink: /blog/:title/
+permalink: /blog/:year/:title/
 exclude:
   - Gemfile
   - LICENSE
