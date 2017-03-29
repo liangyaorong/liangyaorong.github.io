@@ -1,56 +1,134 @@
-# Kikofri
+# Lanyon
 
-Kikofri is a theme for Jekyll that's a fork of the [Kiko theme](https://github.com/gfjaru/Kiko) by [@gfjaru](https://twitter.com/gfjaru) (which I do recommend). 
+Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content first by tucking away navigation in a hidden drawer. It's based on [Poole](http://getpoole.com), the Jekyll butler.
 
-It came about because I like my themes like I like my music: ugly, old and barren. It's an assortment of hacks filtered through web-design choices from the turn of the millennium.
+![Lanyon](https://f.cloud.github.com/assets/98681/1825266/be03f014-71b0-11e3-9539-876e61530e24.png)
+![Lanyon with open sidebar](https://f.cloud.github.com/assets/98681/1825267/be04a914-71b0-11e3-966f-8afe9894c729.png)
 
-You'll see it undead here [http://kikofri.johantkatiska.se/](http://kikofri.johantkatiska.se/)
 
-## To do:
+## Contents
 
-* Clean up redundant markup
-* Reevaluate the need for four layouts
-* Listen to Good Friendly Violent Fun by Exodus
+- [Usage](#usage)
+- [Options](#options)
+  - [Sidebar menu](#sidebar-menu)
+  - [Themes](#themes)
+  - [Reverse layout](#reverse-layout)
+- [Development](#development)
+- [Author](#author)
+- [License](#license)
 
-## How to:
 
-1. Fork this repository
-2. Clone the repository to your computer.<br />`git clone https://github.com/YOURUSERNAME/Kikofri`  
-3. Run it.<br />`jekyll serve`
-4. If that doesn't work you might want to take a look at the Gemfile in the cloned repository and satisfy dependencies where it is needed.
- - I'd recommend [rvm](https://rvm.io/) for this.
-5. Go to http://127.0.0.1:4000 in your browser.
+## Usage
 
-### General pointers:
+Lanyon is a theme built on top of [Poole](https://github.com/poole/poole), which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See [the Poole usage guidelines](https://github.com/poole/poole#usage) for how to install and use Jekyll.
 
-* If you don't use Github remove the line `gh-pages` in the Gemfile in addition to consulting the [Jekyll documentation](https://jekyllrb.com/docs/home/) for [deployment options](https://jekyllrb.com/docs/deployment-methods/).
-* For indented paragraphs type: `µµ`
 
-## Make it a little less ugly:
+## Options
 
-1. Change the name and modify nav at `_config.yml`.
-2. Make some appropriate changes — or inappropriate if you're into those kind of things — in `about.md`.
-3. Navigate to the `_posts` folder and remove the example content by writing `rm *` in your terminal (make sure that you're in the right folder)
- - while you're at it create a post of your own like so: `touch YYYY-MM-DD.md`
- - then do this: `echo -e "---\ntitle: 'Friends Don't Lie.'\ndescription: 'No more.'\nauthor: 'Eleven'\n---" > YYYY-MM-DD.md`
-4. Type away! Reject my reality and substitute your own!
+Lanyon includes some customizable options, typically applied via classes on the `<body>` element.
+
+
+### Sidebar menu
+
+Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's [front-matter](http://jekyllrb.com/docs/frontmatter/).
+
+```
+---
+layout: page
+title: About
+---
+```
+
+**Why require a specific layout?** Jekyll will return *all* pages, including the `atom.xml`, and with an alphabetical sort order. To ensure the first link is *Home*, we exclude the `index.html` page from this list by specifying the `page` layout.
+
+
+### Themes
+
+Lanyon ships with eight optional themes based on the [base16 color scheme](https://github.com/chriskempson/base16). Apply a theme to change the color scheme (mostly applies to sidebar and links).
+
+![Lanyon with red theme](https://f.cloud.github.com/assets/98681/1825270/be065110-71b0-11e3-9ed8-9b8de753a4af.png)
+![Lanyon with red theme and open sidebar](https://f.cloud.github.com/assets/98681/1825269/be05ec20-71b0-11e3-91ea-a9138ef07186.png)
+
+There are eight themes available at this time.
+
+![Available theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
+
+To use a theme, add any one of the available theme classes to the `<body>` element in the `default.html` layout, like so:
+
+```html
+<body class="theme-base-08">
+  ...
+</body>
+```
+
+To create your own theme, look to the Themes section of [included CSS file](https://github.com/poole/lanyon/blob/master/public/css/lanyon.css). Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.
+
+
+### Reverse layout
+
+![Lanyon with reverse layout](https://f.cloud.github.com/assets/98681/1825265/be03f2e4-71b0-11e3-89f1-360705524495.png)
+![Lanyon with reverse layout and open sidebar](https://f.cloud.github.com/assets/98681/1825268/be056174-71b0-11e3-88c8-5055bca4307f.png)
+
+Reverse the page orientation with a single class.
+
+```html
+<body class="layout-reverse">
+  ...
+</body>
+```
+
+
+### Sidebar overlay instead of push
+
+Make the sidebar overlap the viewport content with a single class:
+
+```html
+<body class="sidebar-overlay">
+  ...
+</body>
+```
+
+This will keep the content stationary and slide in the sidebar over the side content. It also adds a `box-shadow` based outline to the toggle for contrast against backgrounds, as well as a `box-shadow` on the sidebar for depth.
+
+It's also available for a reversed layout when you add both classes:
+
+```html
+<body class="layout-reverse sidebar-overlay">
+  ...
+</body>
+```
+
+### Sidebar open on page load
+
+Show an open sidebar on page load by modifying the `<input>` tag within the `sidebar.html` layout to add the `checked` boolean attribute:
+
+```html
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" checked>
+```
+
+Using Liquid you can also conditionally show the sidebar open on a per-page basis. For example, here's how you could have it open on the homepage only:
+
+```html
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" {% if page.title =="Home" %}checked{% endif %}>
+```
+
+## Development
+
+Lanyon has two branches, but only one is used for active development.
+
+- `master` for development.  **All pull requests should be to submitted against `master`.**
+- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
+
+
+## Author
+
+**Mark Otto**
+- <https://github.com/mdo>
+- <https://twitter.com/mdo>
+
 
 ## License
 
-The Kikofri theme by [kxxvii](https://github.com/kxxvii) is released under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). The Kiko theme by [@gfjaru](https://twitter.com/gfjaru) is released under the [MIT License](https://opensource.org/licenses/MIT). 
+Open sourced under the [MIT license](LICENSE.md).
 
-```
-   Copyright 2016 kxxvii
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-```
+<3

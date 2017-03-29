@@ -1,55 +1,22 @@
----
-# # # # # # # # # #
-#  K i k o f r i  #
-# # # # # # # # # #
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+relative_permalinks: true
 
-# Basic
-name: "K i k o f r i"
-description: "dirty and malnourished jekyll theme"
+# Setup
+title:               Lanyon
+tagline:             'A Jekyll theme'
+description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+url:                 http://lanyon.getpoole.com
+baseurl:             ''
+paginate:            5
 
-# URL
-url: ""
-#baseurl: ""
-permalink: /:year/:month/:day/:title.html
+# About/contact
+author:
+  name:              Mark Otto
+  url:               https://twitter.com/mdo
+  email:             markdotto@gmail.com
 
-# Markdown
-markdown: kramdown
-
-# Navigation
-nav:
- - name: "about"
-   href: "/about"
-
- - name: "reference"
-   href: "/ref"
-
- - name: "contact"
-   href: "mailto:ivantheterrible@1530to1584.gov?You%20are%20ooold..."
-
-# Sass
-sass:
- style: :compressed
-
-# Excerpt
-excerpt_separator: <!-ex->
-
-#Gems
-gems: [jekyll-paginate]
-paginate: 10
-paginate_path: "/page:num/"
-
-# Scopes
-defaults:
- -
-  scope:
-   path: ""
-   type: "pages"
-  values:
-   layout: "page"
- -
-  scope:
-   path: ""
-   type: "posts"
-  values:
-   layout: "post"
----
+# Custom vars
+version:             1.0.0
