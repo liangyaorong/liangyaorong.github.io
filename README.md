@@ -1,50 +1,32 @@
-# Webjeda Hagura Theme
+# About
 
-[**Demo**](http://webjeda.com/hagura)
+This is my blog based on jekyll. And I change the style and interactive. If you want to use this model of the blog. **Please give a star at this repository**. Then you can clone it as your blog model.
 
-Hagura is a theme made for blogs with long text paragraphs. Made to be easy on eyes as well with a switchable theme.
+You can visit [here](http://gaohaoyang.github.io) to see this blog.
 
-Suitable fonts are selected for better readability. Since the theme is created for smartphone reading, the theme is very light and it loads instantly even on a slow data connection.
+---
 
-The theme comes with pre-installed analytics, disqus and html compressor. But make sure you change key parameters in the _config.yml file.
+这是我的博客，基于 jekyll。我改了所有默认的样式和交互。如果你想使用这个博客模板。**请先在这个仓库上点个star吧**，这也是对我的肯定和鼓励，谢谢了。然后你可以克隆这个仓库用作你自己的博客。
 
+博客访问地址：[点击这里](http://gaohaoyang.github.io)
 
-# Installation: 
-Fork the ``master`` branch and delete ``gh-pages`` branch in it. This is important because ``gh-pages`` branch is used here only to host the blog. You should be using the master branch as the source and create a fresh ``gh-pages`` branch.
+**使用时请注明模板来源:  Jekyll theme by [Gaohaoyang](https://github.com/Gaohaoyang/gaohaoyang.github.io)**
 
-Watch my video on instlallation
-<iframe width="100%" height="360" src="https://www.youtube.com/embed/T2nx6tj-ZH4?rel=0" frameborder="0" allowfullscreen></iframe>
+<!--
 
-## How to delete old **gh-pages** branch?
-After forking the repository, click on **branches**.
+## 被引用信息
 
-![delete gh-pages branch](http://blog.webjeda.com/images/delete-github-branch.png)
+使用了我的模板并写明来源的人：   
 
-Delete ``gh-pages`` branch.
-![delete gh-pages branch](http://blog.webjeda.com/images/delete-github-branch-2.png)
+* [dreamholy](http://dreamholy.github.io/)
 
-You have to create a new ``gh-pages`` branch using the master branch. Go back to the forked repository and create ``gh-pages`` branch.
+没有注明来源的人：
 
-![create gh-pages branch](http://blog.webjeda.com/images/create-gh-pages-branch.JPG)
-
-Now, go to settings and check the **Github Pages** section. You should see a URL where the blog is hosted.
-
-This process will host the theme as a **Project Page**. You can also download the files for local development. 
-
-Default theme will look like this
-
-![webjeda gatok jekyll theme](http://webjeda.com/hagura/images/hagura-1.png)
+* [yangshuailing](http://yangshuailing.github.io/com/)
+* [huapu728](http://huapu728.github.io/)
+* [greatbuger](http://greatbuger.github.io/) 
 
 
-This theme is responsive.
-
-![webjeda gatok responsive jekyll theme](http://webjeda.com/hagura/images/hagura-responsive.png)
+-->
 
 
-
-# Development
-Make changes to the **master** branch and create a pull request. Do not use **gh-pages** branch as it is used to host the theme.
-
-
-# License
-Read LICENSE file

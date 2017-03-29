@@ -1,41 +1,23 @@
-### your site title here
+# Site settings
+title: HyG
+email: gaohaoyang126@126.com
+description: 浩阳的博客 前端爱好者
+# > # this means to ignore newlines until "baseurl:"
+#   Write an awesome description for your new site here. You can edit this
+#   line in _config.yml. It will appear in your document head meta (for
+#   Google search results) and in your feed.xml site description.
 
-title: Hagura - Light!
-baseurl: /hagura # name of the repository
-email: your@email.com
+# baseurl: "" # the subpath of your site, e.g. /blog/
+# url: "http://yourdomain.com" # the base hostname & protocol for your site
+# twitter_username: jekyllrb
+github_username:  Gaohaoyang
+permalink: /:year/:month/:day/:title/
 
-
-
-highlighter: rouge
+# Build settings
 markdown: kramdown
-### exclude the instructions / write-up in the README.md
 
-
-# Tracker
-analytics: UA-83979019-1
-
-# Comments
-disqus-shortname: webjeda-demo
-
-
-#optimization
-#compress.html
-compress_html:
-  clippings: [html,div, p, ul, td, h1, h2, h3, h4,link, meta, footer, nav, img, header, hr, br, head, style, li, ul, ol, time, main, script, title]
-  comments: ["<!-- ", " -->"]
-  endings: [all]
-  ignore:
-    envs: [local]
-  blanklines: false
-  profile: false
-  startings: []
-  
-
-sass:
- style: compressed
-
-exclude:
-- README.md
-
-
-gems: [jekyll-seo-tag, jekyll-paginate]
+# highlight
+# 本地用rouge, github上用pygments
+# highlighter: pygments
+# highlighter: rouge
+# highlighter: false
