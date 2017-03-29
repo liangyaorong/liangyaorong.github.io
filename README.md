@@ -1,59 +1,87 @@
-## Voyager
+# Hydejack
 
-Just another jekyll theme. Demo: <http://octowed.github.io/voyager>
+Hydejack is a pretentious two-column [Jekyll](http://jekyllrb.com) theme, stolen by [`@qwtel`](https://twitter.com/qwtel) from [Hyde](http://hyde.getpoole.com). You could say it was.. [hydejacked](http://media3.giphy.com/media/makedRIckZBW8/giphy.gif).
 
-### Feathures:
+## Features
+Unlike Hyde, it's very opinionated about how you are going to use it.
 
-All HTML files are compressed (see `_layouts/compress.html`).
+Features include:
 
-**Post**
+* Touch-enabled sidebar / drawer for mobile, including fallback when JS is disabled.
+* Github Pages compatible tag support based on [this post][tag].
+* Customizable link color and sidebar image, per-site, per-tag and per-post.
+* Optional author section at the bottom of each post.
+* Optional comment section powered by Disqus.
+* Layout for posts grouped by year
+* Wide array of social media icons on sidebar.
+* Math blocks via [KaTeX](https://khan.github.io/KaTeX/).
 
-All post settings can be changed. Example:
+## Download
+Hydejack is developed on and hosted with GitHub. Head to the [GitHub repository](https://github.com/qwtel/hydejack) for downloads, bug reports, and feature requests.
 
-```
----
+## Sidebar
+I love the original Hyde theme, but unfortunately the layout isn't as great on small screens.
+Since the sidebar moves to the top, the user has to scroll down just to read the title of a blog post.
+
+By using a drawer component I was able to retain the original two column layout. It's possible to move the drawer via touch input (with the help of a little JavaScript).
+
+Since the background image contributes to the feel of the page I'm letting it peek over the edge a bit. This also provides a hint to the user that an interaction is possible.
+
+## Manual
+
+### Configuration
+You can configure important aspects of the theme via [`_config.yml`](https://github.com/qwtel/hydejack/blob/master/_config.yml). This includes:
+
+* the blog description in the sidebar
+* the (optional) author description and photo
+* default image and link color of the blog
+* the github and twitter usernames
+
+### How to Change the Image and Color of a Post
+In the manifest of a blog post, simply add an url as `image` and a CSS color as `color`:
+
+~~~yml
 layout: post
-bg: '2016/background.jpg'
-title: "Post Heading"
-crawlertitle: "page title"
-summary: "post description"
-date: 2016-06-29
-tags : ['front-end']
-slug: post-url
-author: "Author"
-categories: posts
----
-```
+title: Introducing Hydejack
+image: http://qwtel.com/hydejack/public/img/hyde.jpg
+color: '#949667'
+~~~
 
-`bg` is a path to background of your article. By default backgrounds are placed in the `assets/images` directory.
+### How to Add a New Tag
+Tags are possible, but they are not meant to be used #instagram #style: #food #goodfood #happy #happylife #didimentionfood #yougetthepoint. Each tag requires some setup work. I tend to think of it as categories that can be combined.
 
-**Page**
+1.  Add an entry to `_data/tags.yml`, where the key represents a slug and provide at least a `name` value and optionally `image`, `color` and `description`.
 
-If page contains `active` tag, it will be show on site menu.
+    Example `/_data/tags.yml`:
 
-```
----
-layout: page
-title: "About"
-permalink: /about/
-active: about
----
-```
+    ~~~yml
+    mytag:
+      name: My Tag
+    ~~~
 
-**Archive**
+2.  Make a new file in the `tag` folder, using the same name you've used as the key / slug and change the `tag` and `permalink` entries.
 
-Archive page is sorting posts by tags. No more than one tag in one post.
+    Example `/tag/mytag.md`:
 
-Good:
+    ~~~yml
+    layout: blog-by-tag
+    tag: mytag
+    permalink: /tag/mytag/
+    ~~~
 
-```
-tags : ['front-end']
-```
+3.  Tag your blog posts using the `tags` key (color and image will only depend on the first tag).
 
-Bad:
+    ~~~yml
+    layout: post
+    title: Introducing My New Tag
+    tags: [mytag, othertag]
+    ~~~
 
-```
-tags : ['front-end', 'jekyll']
-```
+4. (optional) Add the tag to the sidebar, by adding it to `sidebar_tags` in `_config.yml`.
+   They will appear in the listed order.
 
-Don't forget to change `_config.yml`.
+   ~~~yml
+   sidebar_tags: [mytag, othertag]
+   ~~~
+
+[tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
