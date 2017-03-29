@@ -1,45 +1,87 @@
-# Ed: A Jekyll Theme for Minimal Editions
+# Hydejack
 
-[![Build Status](https://travis-ci.org/elotroalex/ed.svg?branch=gh-pages)](https://travis-ci.org/elotroalex/ed)
+Hydejack is a pretentious two-column [Jekyll](http://jekyllrb.com) theme, stolen by [`@qwtel`](https://twitter.com/qwtel) from [Hyde](http://hyde.getpoole.com). You could say it was.. [hydejacked](http://media3.giphy.com/media/makedRIckZBW8/giphy.gif).
 
+## Features
+Unlike Hyde, it's very opinionated about how you are going to use it.
 
-![Sample Ed screenshot](https://github.com/elotroalex/ed/blob/master/assets/screenshot.png)
+Features include:
 
+* Touch-enabled sidebar / drawer for mobile, including fallback when JS is disabled.
+* Github Pages compatible tag support based on [this post][tag].
+* Customizable link color and sidebar image, per-site, per-tag and per-post.
+* Optional author section at the bottom of each post.
+* Optional comment section powered by Disqus.
+* Layout for posts grouped by year
+* Wide array of social media icons on sidebar.
+* Math blocks via [KaTeX](https://khan.github.io/KaTeX/).
 
+## Download
+Hydejack is developed on and hosted with GitHub. Head to the [GitHub repository](https://github.com/qwtel/hydejack) for downloads, bug reports, and feature requests.
 
-## Introduction
+## Sidebar
+I love the original Hyde theme, but unfortunately the layout isn't as great on small screens.
+Since the sidebar moves to the top, the user has to scroll down just to read the title of a blog post.
 
-Ed is a [Jekyll](https://jekyllrb.com/) theme designed for textual editors based on [minimal computing](http://go-dh.github.io/mincomp/) principles, and focused on legibility, durability, ease and flexibility.
+By using a drawer component I was able to retain the original two column layout. It's possible to move the drawer via touch input (with the help of a little JavaScript).
 
+Since the background image contributes to the feel of the page I'm letting it peek over the edge a bit. This also provides a hint to the user that an interaction is possible.
 
-One of our most pressing and ever revolving needs as scholars is to pass on our textual artifacts from one generation to another. The art of textual editing, among other practices, has helped many cultures to remember and interpret for centuries. Alas, that art is practiced and encouraged in its highest form by a dwindling number of scholars. In a digital environment the problem is compounded by the difficulties of the medium. While vast repositories, and "e-publications" appear on the online scene yearly, very few manifest a textual scholar's disciplined attention to detail. In contrast, most textual scholars who have made the leap to a rigorous digital practice have focused on markup, relying on technical teams to deploy and maintain their work. This makes your average scholarly digital edition a very costly, and therefore limited affair.
+## Manual
 
-As we see it, a minimal edition is one that aims to reduce the size and complexity of the back and front end, and the learning curves for the user and the producer. Out of-the-box, this theme can help you build a simple reading edition, or a traditional scholarly edition with footnotes and a bibliography without breaking the bank. In our estimate, these are the two most immediately useful type of editions for editors and readers. An edition produced with Ed consists of static pages whose rate of decay is substantially lower than database-driven systems. As an added bonus, these static pages require less bandwith. Our hope is that our approach can help beginners or veterans deploy beautiful editions with less effort, that it can help us teach a 'full stack' [in one academic semester](https://github.com/susannalles/MinimalEditions/blob/master/index.md), allow us to care for our projects at less cost, and perhaps, just perhaps, allow us to generate high-quality editions on github.io in large quantities based on the [git-lit](http://jonreeve.com/2015/09/introducing-git-lit/) model by Jonathan Reeve. We're coming for you, Kindle! 
+### Configuration
+You can configure important aspects of the theme via [`_config.yml`](https://github.com/qwtel/hydejack/blob/master/_config.yml). This includes:
 
+* the blog description in the sidebar
+* the (optional) author description and photo
+* default image and link color of the blog
+* the github and twitter usernames
 
-## Sample Ed editions.
+### How to Change the Image and Color of a Post
+In the manifest of a blog post, simply add an url as `image` and a CSS color as `color`:
 
-- [Our sample site](http://elotroalex.github.io/ed/) is the first edition built with Ed.
-- [Fugitive Verses](http://fugitiverses.viraltexts.org/): Popular Reprinted Poetry from Nineteenth Century Newspapers
-- [mini lazarillo](http://minilazarillo.github.io/): A minimal edition of the *Lazarillo de Tormes*
+~~~yml
+layout: post
+title: Introducing Hydejack
+image: http://qwtel.com/hydejack/public/img/hyde.jpg
+color: '#949667'
+~~~
 
+### How to Add a New Tag
+Tags are possible, but they are not meant to be used #instagram #style: #food #goodfood #happy #happylife #didimentionfood #yougetthepoint. Each tag requires some setup work. I tend to think of it as categories that can be combined.
 
+1.  Add an entry to `_data/tags.yml`, where the key represents a slug and provide at least a `name` value and optionally `image`, `color` and `description`.
 
-## Current Features
-- Templates for narrative, drama and poetry
-- Responsive design for mobile phones, tablets and PCs.
-- Relatively easy to learn and teach
-- Works well in high- or low- bandwitdh scenarios
-- Easier for digital archives and libraries to preserve
-- Open source, open access
-- Unobtrusive footnotes
-- Metadata in Dublin Core and OpenGraph to play nice with Zotero, libraries and social media.
-- Automatic table of content generation
-- Simple search functionality
-- Annotations via [hypothes.is](https://hypothes.is/)
-- Optional: Ability to generate well-formatted bibliographies and linked citations
+    Example `/_data/tags.yml`:
 
+    ~~~yml
+    mytag:
+      name: My Tag
+    ~~~
 
-## Installing and using Ed
+2.  Make a new file in the `tag` folder, using the same name you've used as the key / slug and change the `tag` and `permalink` entries.
 
-To learn how to install and begin using Ed, please visit our [documentation page](http://elotroalex.github.io/ed/documentation).
+    Example `/tag/mytag.md`:
+
+    ~~~yml
+    layout: blog-by-tag
+    tag: mytag
+    permalink: /tag/mytag/
+    ~~~
+
+3.  Tag your blog posts using the `tags` key (color and image will only depend on the first tag).
+
+    ~~~yml
+    layout: post
+    title: Introducing My New Tag
+    tags: [mytag, othertag]
+    ~~~
+
+4. (optional) Add the tag to the sidebar, by adding it to `sidebar_tags` in `_config.yml`.
+   They will appear in the listed order.
+
+   ~~~yml
+   sidebar_tags: [mytag, othertag]
+   ~~~
+
+[tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
