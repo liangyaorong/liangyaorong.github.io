@@ -37,6 +37,6 @@ noita:
         url: https://github.com/liangyaorong
       - name: Blog
         url: /blog/
-      - about:
+      - name: about
         url: about.md
 
