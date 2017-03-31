@@ -22,7 +22,7 @@ compress_html:
     envs: [travis]
 # theme
 noita:
-  name: 梁耀荣 liangyaorong1995@outlook.com
+  name: 梁耀荣
   description: 华中师范大学统计学本科生一枚
   author:
     name: Anatol Broder
@@ -37,4 +37,6 @@ noita:
         url: https://github.com/liangyaorong
       - name: Blog
         url: /blog/
+      - about:
+        url: about.md
 
