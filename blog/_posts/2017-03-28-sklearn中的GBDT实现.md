@@ -415,5 +415,5 @@ class GradientBoostingRegressor(BaseGradientBoosting, RegressorMixin):
 <br>
 ## TODO
 <br>好啦，到这里，我们对GBDT的源码解读就差不多啦，更多的细节大家可以深入阅读源码.
-<br>如果文章有不当的地方欢迎指出.页面左上角有我的电子邮箱，谢谢大家的指点！
+<br>如果文章有不当的地方欢迎指出.页面下方有我的电子邮箱，谢谢大家的指点！
 <br>下一篇文章将会讲一下集成学习中另一个分支：bagging.下篇文章见吧.
