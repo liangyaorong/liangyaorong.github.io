@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "GBDT的具体实现"
+title:  "sklearn中的GBDT实现"
 date:   2017-03-28
 ---
 <br>上一篇文章中我们已经大概了解了Gradient Boosting的来源和主要数学思想。在这篇文章里，我们将以sklearn中的Gradient Boosting为基础 [源码在这](https://github.com/scikit-learn/scikit-learn/blob/14031f6/sklearn/ensemble/gradient_boosting.py#L1635)，了解GBDT的实现过程.希望大家能在看这篇文章的过程中有所收获.
