@@ -34,7 +34,7 @@ noita:
     toggle: Menu
     right:
       - name: Home
-        url: /homepage/
+        url: https://liangyaorong.github.io/
       - name: GitHub
         url: https://github.com/liangyaorong
       - name: Blog
