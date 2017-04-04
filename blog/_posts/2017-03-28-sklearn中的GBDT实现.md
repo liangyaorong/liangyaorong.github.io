@@ -262,13 +262,13 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble)):
 <br>根据代码中的标号，我们一步一步来看
 * 1.训练前的初始化，以及做好输入检测
 * 2.进入T轮迭代，T=n_estimators. 注意，若采用重采样进行训练，若OOB中出现过拟合，会提前停止迭代(由monitor决定)
- - 3.确定训练样本
- - 4.计算原始oob error
- - 5.调用_fit_stage进行当前轮训练并返回最新y_pred(！重点！)
- - 6.计算oob_improvement_
- - 7.更新train_score_
- - 8.更新verbose_reporter
- - 9.更新monitor，判断是否要提前停止迭代
+3. 确定训练样本
+4. 计算原始oob error
+5. 调用_fit_stage进行当前轮训练并返回最新y_pred(！重点！)
+6. 计算oob_improvement_
+7. 更新train_score_
+8. 更新verbose_reporter
+9. 更新monitor，判断是否要提前停止迭代
 
 <br>是否很好奇，流程5是怎么实现的？我们接着看
 <br>
