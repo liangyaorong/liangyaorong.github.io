@@ -6,8 +6,21 @@ date:   2017-03-28
 <br>上一篇文章中我们已经大概了解了Gradient Boosting的来源和主要数学思想。在这篇文章里，我们将以sklearn中的Gradient Boosting为基础 [源码在这](https://github.com/scikit-learn/scikit-learn/blob/14031f6/sklearn/ensemble/gradient_boosting.py#L1635)，了解GBDT的实现过程.希望大家能在看这篇文章的过程中有所收获.
 <br>这里面会有大量的代码，请耐住性子,我们一起把它啃下来.
 <br>
-## GBDT
-### 什么是GBDT
+* [1 GBDT](#1)
+<br>[1.1 什么是GBDT](#1.1)
+<br>[1.2 GBDT中的数学](#1.2)
+* [2 实现代码](#2)
+<br>[2.1 回归树叶子节点估计](#2.1)
+<br>[2.2 回归器损失函数](#2.2)
+<br>[2.3 分类器损失函数](#2.3)
+<br>[2.4 GBDT的训练](#2.4)
+<br>[2.5 迭代中每一轮的训练](#2.5)
+<br>[2.6 GBDT的预测](#2.6)
+
+
+
+<h3 id="1">GBDT</h3>
+<h4 id="1.1">什么是GBDT</h4>
 <br>GBDT全称是Gradient Boosting Decision Trees，顾名思义，就是在梯度提升框架下(上一篇文章有详细解说[传送门](https://liangyaorong.github.io/blog/2017/Boosting/))，用回归树作为基本分类器的算法(分类树相加会有问题，如男+女=?).因此可以想到，参数调优时有两方面：
 <br>1.梯度提升框架方面：
 * “损失函数 loss”
@@ -31,7 +44,7 @@ date:   2017-03-28
 <br>但决策树有一个很大的缺点:高方差和不稳定.由于决策数是运用启发式生成的，初始分割点的一点改变就会导致最后结果完全不同.这使得决策树对特征的要求非常高.但实际中特征噪声是很多的.
 <br>因此它是典型的弱分类器.
 <br>
-### GBDT的中的数学
+<h4 id="1.2">GBDT的中的数学</h4>
 <br>当我们的基本分类器是一个包含J个节点的回归树时，回归树模型可以表示为
 <br>![](http://latex.codecogs.com/gif.latex?h(x;\{b_j, R_j\}_1^J) = \sum_{b=j}^Jb_jI(x\in R_j) \qquad)
 <br>其中Rj为不相交的区域，它们的集合覆盖了预测值空间，bj是叶子节点的值.
@@ -41,10 +54,10 @@ date:   2017-03-28
 <br>![](http://img.blog.csdn.net/20170329191224077)
 <br>说白了就是每次的预测相加.不难理解吧
 <br>
-## 实现代码
+<h3 id="2">实现代码</h3>
 了解了最基本的构造，我们接着看一下GBDT的代码实现
 <br>
-### 片段一（回归树叶子节点估计，以取平均为例）
+<h4 id="2.1">片段一（回归树叶子节点估计，以取平均为例)</h4>
 ```python
 class MeanEstimator(BaseEstimator):
     """An estimator predicting the mean of the training targets."""
@@ -68,7 +81,7 @@ class MeanEstimator(BaseEstimator):
 * 先验概率
 * 零填充
 
-### 片段二(回归器损失函数,以平方损失为例)
+<h4 id="2.2">片段二(回归器损失函数,以平方损失为例)</h4>
 ```python
 class LeastSquaresError(RegressionLossFunction):
     def init_estimator(self):
@@ -107,7 +120,7 @@ class LeastSquaresError(RegressionLossFunction):
 * Huber损失
 * 分位数损失
 
-### 片段三(分类器损失函数,以指数损失为例)
+<h4 id="2.3">片段三(分类器损失函数,以指数损失为例)</h4>
 ```python
 class ExponentialLoss(ClassificationLossFunction):
     """Exponential loss function for binary classification.
@@ -179,7 +192,7 @@ ps:这两个函数的出现是因为GBDT中，所有基模型都是回归树，�
 * 多项偏差(Multinomial Deviance)
 
 
-### 片段四(GBDT的训练 _fit_stages)
+<h4 id="2.4">片段四(GBDT的训练 _fit_stages)</h4>
 ```python
 class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble)):
     """Abstract base class for Gradient Boosting. """
@@ -272,7 +285,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble)):
 
 <br>是否很好奇，流程5是怎么实现的？我们接着看
 <br>
-### 片段五(具体每一轮的训练 _fit_stage)
+<h4 id="2.5">片段五(迭代中每一轮的训练 _fit_stage)</h4>
 ```python
 def _fit_stage(self, i, X, y, y_pred, sample_weight, sample_mask,
                random_state, X_idx_sorted, X_csc=None, X_csr=None):
@@ -350,7 +363,8 @@ def _fit_stage(self, i, X, y, y_pred, sample_weight, sample_mask,
 * monitor的实现
 
 这些就留给你们自己去研究了.看懂了收益也会很大吧
-### 片段六(GBDT的预测)
+<br>
+<h4 id="2.6">片段六(GBDT的预测)</h4>
 预测对于分类器和回归器来说是不同的，但是在Base Gradient Boosting类中有他们共同要用到的函数
 ```python
 1-> def _init_decision_function(self, X):
